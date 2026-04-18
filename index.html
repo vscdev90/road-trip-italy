@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roadtrip Italie 2026 🇮🇹</title>
+  <style>
+    :root {
+      --green: #2d6a4f;
+      --green-light: #52b788;
+      --cream: #fefae0;
+      --orange: #e07b39;
+      --red: #c1121f;
+      --blue: #1d3557;
+      --text: #1b1b1b;
+      --muted: #6b7280;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 24px rgba(0,0,0,0.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--green) 0%, #1b4332 60%, var(--blue) 100%);
+      color: #fff;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      position: relative;
+    }
+
+    header .subtitle {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      opacity: 0.85;
+      position: relative;
+    }
+
+    header .flags {
+      font-size: 2rem;
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    /* ── TRACKER BANNER ── */
+    #tracker {
+      background: var(--orange);
+      color: #fff;
+      padding: 1.2rem 1.5rem;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    #tracker .tracker-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.85;
+      margin-bottom: 0.25rem;
+    }
+
+    #tracker .tracker-location {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    #tracker .tracker-status {
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+      opacity: 0.9;
+    }
+
+    #tracker.home { background: var(--muted); }
+    #tracker.travel { background: var(--blue); }
+    #tracker.austria { background: #c0392b; }
+    #tracker.tuscany { background: var(--green); }
+    #tracker.levanto { background: #0077b6; }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    section { margin-bottom: 3rem; }
+
+    h2 {
+      font-size: 1.5rem;
+      color: var(--green);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--green-light);
+    }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--green-light), var(--orange));
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 1.2rem;
+      margin-bottom: 1.75rem;
+      position: relative;
+    }
+
+    .timeline-dot {
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      position: relative;
+      z-index: 1;
+      box-shadow: var(--shadow);
+    }
+
+    .dot-travel { background: var(--blue); }
+    .dot-austria { background: #c0392b; }
+    .dot-tuscany { background: var(--green); }
+    .dot-levanto { background: #0077b6; }
+    .dot-home { background: var(--orange); }
+
+    .timeline-content {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.1rem 1.3rem;
+      box-shadow: var(--shadow);
+      flex: 1;
+    }
+
+    .timeline-content.active-stop {
+      border: 2px solid var(--orange);
+    }
+
+    .timeline-date {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-title {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: var(--blue);
+    }
+
+    .timeline-desc {
+      font-size: 0.93rem;
+      color: var(--text);
+      margin-top: 0.4rem;
+      line-height: 1.55;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-family: sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.18rem 0.55rem;
+      border-radius: 20px;
+      background: var(--orange);
+      color: #fff;
+      margin-top: 0.5rem;
+    }
+
+    /* ── PEOPLE GRID ── */
+    .people-section { }
+
+    .group-block {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.1rem 1.3rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1rem;
+    }
+
+    .group-block h3 {
+      font-size: 1rem;
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .people-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .chip {
+      background: var(--cream);
+      border: 1px solid #d1c9a0;
+      border-radius: 999px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .chip.kid {
+      background: #fff3cd;
+      border-color: #f0c060;
+    }
+
+    .group-block .when-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.55rem;
+      font-style: italic;
+    }
+
+    /* ── DESTINATIONS ── */
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .dest-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .dest-card-header {
+      padding: 1.2rem 1.3rem 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .dest-card-icon { font-size: 2rem; }
+
+    .dest-card-header h3 {
+      font-size: 1.1rem;
+      color: var(--blue);
+    }
+
+    .dest-card-header .dest-country {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: sans-serif;
+    }
+
+    .dest-card-body {
+      padding: 0 1.3rem 1.2rem;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    .dest-card-strip {
+      height: 5px;
+    }
+
+    .strip-austria { background: linear-gradient(90deg, #c0392b 33%, #fff 33%, #fff 66%, #c0392b 66%); }
+    .strip-tuscany { background: linear-gradient(90deg, #009246 33%, #fff 33%, #fff 66%, #ce2b37 66%); }
+    .strip-levanto { background: linear-gradient(90deg, #009246 33%, #fff 33%, #fff 66%, #ce2b37 66%); }
+    .strip-transit { background: linear-gradient(90deg, #d52b1e 33%, #fff 33%, #fff 66%, #d52b1e 66%); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      border-top: 1px solid #e0d9c0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .timeline::before { left: 20px; }
+      .timeline-dot { width: 42px; height: 42px; font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Roadtrip Italie 2026</h1>
+  <p class="subtitle">Serfaus &bull; Toscane &bull; Levanto &bull; Cinque Terre</p>
+  <div class="flags">🇳🇱 → 🇦🇹 → 🇮🇹 → 🏠</div>
+</header>
+
+<!-- Live location tracker -->
+<div id="tracker" class="home">
+  <div class="tracker-label">Waar zijn we nu?</div>
+  <div class="tracker-location" id="tracker-location">Laden...</div>
+  <div class="tracker-status" id="tracker-status"></div>
+</div>
+
+<main>
+
+  <!-- ── TIMELINE ── -->
+  <section>
+    <h2>De Route</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot dot-travel">🚗</div>
+        <div class="timeline-content" id="stop-depart">
+          <div class="timeline-date">3 juli 2026 &mdash; vertrekdag</div>
+          <div class="timeline-title">Drachten &amp; Ureterp → Serfaus</div>
+          <div class="timeline-desc">
+            We vertrekken vanuit Drachten en Ureterp richting Serfaus in Oostenrijk.
+            Een flinke rit, maar het avontuur begint!
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dot-austria">🏔️</div>
+        <div class="timeline-content" id="stop-austria">
+          <div class="timeline-date">3 – 6 juli 2026 &mdash; 3 nachten</div>
+          <div class="timeline-title">Serfaus, Oostenrijk</div>
+          <div class="timeline-desc">
+            Drie heerlijke dagen in het Tiroolse Serfaus, op 1.427 meter hoogte.
+            Prachtig uitzicht op de Alpen, wandelen, en genieten.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dot-travel">🚗</div>
+        <div class="timeline-content" id="stop-to-tuscany">
+          <div class="timeline-date">6 juli 2026 &mdash; rijdag</div>
+          <div class="timeline-title">Serfaus → Toscane</div>
+          <div class="timeline-desc">
+            Vanuit de Alpen door Noord-Italie richting het zonovergoten Toscane.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dot-tuscany">🌻</div>
+        <div class="timeline-content" id="stop-tuscany">
+          <div class="timeline-date">6 – 13 juli 2026 &mdash; 7 nachten</div>
+          <div class="timeline-title">Toscane, Italie</div>
+          <div class="timeline-desc">
+            Een week vol cipressenlandschappen, wijn, pasta en Italiaanse zon.
+            We worden hier ook verwelkomd door familie Hoff, Jelmer &amp; Jolyn
+            met Fleur, Olivier en Maartje.
+          </div>
+          <span class="badge">Groot groepsmoment!</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dot-travel">🚗</div>
+        <div class="timeline-content" id="stop-to-levanto">
+          <div class="timeline-date">13 juli 2026 &mdash; rijdag</div>
+          <div class="timeline-title">Toscane → Levanto</div>
+          <div class="timeline-desc">
+            Een korte rit naar de Ligurise kust, richting Levanto.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dot-levanto">🌊</div>
+        <div class="timeline-content" id="stop-levanto">
+          <div class="timeline-date">13 – 16 juli 2026 &mdash; 3 nachten</div>
+          <div class="timeline-title">Levanto &amp; Cinque Terre</div>
+          <div class="timeline-desc">
+            Levanto is het perfecte uitvalspunt voor Cinque Terre: vijf kleurrijke
+            kustnederzettingen met spectaculaire wandelpaden langs de Ligurise Zee.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dot-travel">🚗</div>
+        <div class="timeline-content" id="stop-homeward">
+          <div class="timeline-date">16 – 17 juli 2026</div>
+          <div class="timeline-title">Terug naar huis (via Zwitserland of Duitsland)</div>
+          <div class="timeline-desc">
+            We rijden op 16 juli richting huis met een tussenstop van 1 nacht in
+            Zwitserland of Duitsland. Op 17 juli zijn we weer thuis in Drachten en Ureterp.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dot-home">🏠</div>
+        <div class="timeline-content" id="stop-home">
+          <div class="timeline-date">17 juli 2026 &mdash; thuiskomst</div>
+          <div class="timeline-title">Drachten &amp; Ureterp</div>
+          <div class="timeline-desc">
+            Thuisgekomen met volle accu's, lege koffers en een hoofd vol herinneringen!
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── MENSEN ── -->
+  <section>
+    <h2>De Reisgezelschap</h2>
+
+    <div class="group-block">
+      <h3>Vaste kern &mdash; de hele reis</h3>
+      <div class="people-chips">
+        <span class="chip">Jan</span>
+        <span class="chip">Marga</span>
+        <span class="chip">José</span>
+        <span class="chip">Anne-Jan</span>
+        <span class="chip">PM</span>
+        <span class="chip">Danielle</span>
+        <span class="chip kid">Lieke</span>
+        <span class="chip kid">Evan</span>
+      </div>
+    </div>
+
+    <div class="group-block">
+      <h3>In Toscane erbij</h3>
+      <div class="people-chips">
+        <span class="chip">Familie Hoff</span>
+        <span class="chip">Jelmer</span>
+        <span class="chip">Jolyn</span>
+        <span class="chip kid">Fleur</span>
+        <span class="chip kid">Olivier</span>
+        <span class="chip kid">Maartje</span>
+      </div>
+      <p class="when-note">Aanwezig van 6 t/m 13 juli in Toscane</p>
+    </div>
+
+  </section>
+
+  <!-- ── BESTEMMINGEN ── -->
+  <section>
+    <h2>De Bestemmingen</h2>
+    <div class="destinations-grid">
+
+      <div class="dest-card">
+        <div class="strip-austria dest-card-strip"></div>
+        <div class="dest-card-header">
+          <div class="dest-card-icon">🏔️</div>
+          <div>
+            <h3>Serfaus</h3>
+            <div class="dest-country">Tirol, Oostenrijk</div>
+          </div>
+        </div>
+        <div class="dest-card-body">
+          Serfaus is een autovrij dorpje in het Tiroler Oberland, op 1.427 m.
+          Adembenemend uitzicht, verse berglucht en heerlijk wandelen.
+          Ideale opmaat voor Italie.
+        </div>
+      </div>
+
+      <div class="dest-card">
+        <div class="strip-tuscany dest-card-strip"></div>
+        <div class="dest-card-header">
+          <div class="dest-card-icon">🌻</div>
+          <div>
+            <h3>Toscane</h3>
+            <div class="dest-country">Italie</div>
+          </div>
+        </div>
+        <div class="dest-card-body">
+          Heuvels vol olijfbomen en wijngaarden, pittoreske stadjes als Siena en
+          San Gimignano, en de eindeloze zomerse warmte. Ideaal voor een groot
+          gezinsmoment met de hele ploeg.
+        </div>
+      </div>
+
+      <div class="dest-card">
+        <div class="strip-levanto dest-card-strip"></div>
+        <div class="dest-card-header">
+          <div class="dest-card-icon">🌊</div>
+          <div>
+            <h3>Levanto &amp; Cinque Terre</h3>
+            <div class="dest-country">Ligurie, Italie</div>
+          </div>
+        </div>
+        <div class="dest-card-body">
+          Levanto is een rustig kuststadje vlak bij de Cinque Terre: Monterosso,
+          Vernazza, Corniglia, Manarola en Riomaggiore. Wandelen, zwemmen,
+          anchovis eten en genieten van het prachtige kleurenpalet.
+        </div>
+      </div>
+
+      <div class="dest-card">
+        <div class="strip-transit dest-card-strip"></div>
+        <div class="dest-card-header">
+          <div class="dest-card-icon">🏔️</div>
+          <div>
+            <h3>Tussenstop</h3>
+            <div class="dest-country">Zwitserland of Duitsland</div>
+          </div>
+        </div>
+        <div class="dest-card-body">
+          Op de terugweg overnachten we 1 nacht in Zwitserland of Duitsland
+          &mdash; nog een last-minute berglucht snuiven voor we weer thuis zijn.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Roadtrip Italie 2026 &bull; Gemaakt met liefde voor Jan, Marga, José, Anne-Jan, PM, Danielle, Lieke &amp; Evan
+</footer>
+
+<script>
+  // ── LIVE LOCATION TRACKER ──
+  // Returns the current travel status based on today's date.
+  function getTripStatus() {
+    const now = new Date();
+    // Use local date parts
+    const y = now.getFullYear();
+    const m = now.getMonth() + 1; // 1-based
+    const d = now.getDate();
+
+    const tripYear = 2026;
+
+    // Before trip
+    if (y < tripYear || (y === tripYear && m < 7)) {
+      const tripStart = new Date(2026, 6, 3); // July 3
+      const diff = Math.ceil((tripStart - now) / (1000 * 60 * 60 * 24));
+      return {
+        phase: 'home',
+        location: 'Thuis in Drachten & Ureterp',
+        status: diff > 0 ? `Nog ${diff} dag${diff === 1 ? '' : 'en'} tot vertrek!` : 'Klaar voor vertrek!',
+        cssClass: 'home'
+      };
+    }
+
+    // After trip
+    if (y > tripYear || (y === tripYear && m > 7) || (y === tripYear && m === 7 && d >= 18)) {
+      return {
+        phase: 'home',
+        location: 'Thuis in Drachten & Ureterp',
+        status: 'De roadtrip zit erop — wat een reis! 🎉',
+        cssClass: 'home'
+      };
+    }
+
+    // During the trip (July 2026)
+    if (y === tripYear && m === 7) {
+      if (d === 3) {
+        return {
+          phase: 'travel',
+          location: '🚗 Onderweg naar Serfaus',
+          status: 'Vertrekdag! Drachten & Ureterp → Serfaus, Oostenrijk',
+          cssClass: 'travel'
+        };
+      }
+      if (d >= 3 && d < 6) {
+        return {
+          phase: 'austria',
+          location: '🏔️ Serfaus, Oostenrijk',
+          status: `Dag ${d - 2} in Serfaus — genieten van de Tiroolse bergen`,
+          cssClass: 'austria'
+        };
+      }
+      if (d === 6) {
+        return {
+          phase: 'travel',
+          location: '🚗 Onderweg naar Toscane',
+          status: 'Rijdag! Serfaus → Toscane, Italie',
+          cssClass: 'travel'
+        };
+      }
+      if (d > 6 && d < 13) {
+        return {
+          phase: 'tuscany',
+          location: '🌻 Toscane, Italie',
+          status: `Dag ${d - 5} in Toscane — la dolce vita!`,
+          cssClass: 'tuscany'
+        };
+      }
+      if (d === 13) {
+        return {
+          phase: 'travel',
+          location: '🚗 Onderweg naar Levanto',
+          status: 'Rijdag! Toscane → Levanto, Ligurie',
+          cssClass: 'travel'
+        };
+      }
+      if (d > 13 && d < 16) {
+        return {
+          phase: 'levanto',
+          location: '🌊 Levanto & Cinque Terre',
+          status: `Dag ${d - 12} in Levanto — Cinque Terre verkennen!`,
+          cssClass: 'levanto'
+        };
+      }
+      if (d === 16) {
+        return {
+          phase: 'travel',
+          location: '🚗 Onderweg naar huis',
+          status: 'Op weg naar de tussenstop in Zwitserland of Duitsland',
+          cssClass: 'travel'
+        };
+      }
+      if (d === 17) {
+        return {
+          phase: 'home',
+          location: '🏠 Bijna thuis!',
+          status: 'Vandaag arriveren we weer in Drachten & Ureterp',
+          cssClass: 'home'
+        };
+      }
+    }
+
+    return {
+      phase: 'home',
+      location: 'Thuis',
+      status: '',
+      cssClass: 'home'
+    };
+  }
+
+  function updateTracker() {
+    const status = getTripStatus();
+    const tracker = document.getElementById('tracker');
+    const locEl = document.getElementById('tracker-location');
+    const statusEl = document.getElementById('tracker-status');
+
+    tracker.className = status.cssClass;
+    locEl.textContent = status.location;
+    statusEl.textContent = status.status;
+
+    // Highlight the active timeline stop
+    highlightActiveStop(status.phase);
+  }
+
+  function highlightActiveStop(phase) {
+    const phaseMap = {
+      travel: null,
+      austria: 'stop-austria',
+      tuscany: 'stop-tuscany',
+      levanto: 'stop-levanto',
+      home: null
+    };
+
+    // Remove existing active classes
+    document.querySelectorAll('.timeline-content').forEach(el => {
+      el.classList.remove('active-stop');
+    });
+
+    const stopId = phaseMap[phase];
+    if (stopId) {
+      const el = document.getElementById(stopId);
+      if (el) el.classList.add('active-stop');
+    }
+  }
+
+  updateTracker();
+</script>
+
+</body>
+</html>
