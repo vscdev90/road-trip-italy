@@ -412,6 +412,161 @@
       color: var(--text);
     }
 
+    /* ── KALENDER ── */
+    .countdown-bar {
+      background: linear-gradient(135deg, var(--blue), #2d4a7a);
+      color: #fff;
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.25rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .countdown-big {
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .countdown-unit {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.75;
+    }
+
+    .countdown-sub {
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .calendar-wrapper {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .cal-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1rem;
+      background: var(--green);
+      color: #fff;
+    }
+
+    .cal-nav-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: #fff;
+      font-size: 1.4rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .cal-nav-btn:hover { background: rgba(255,255,255,0.35); }
+
+    .cal-nav-center { text-align: center; }
+
+    #cal-month-label { font-size: 1.05rem; font-weight: bold; }
+
+    .cal-jump-btn {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.22rem 0.75rem;
+      font-size: 0.72rem;
+      font-family: sans-serif;
+      cursor: pointer;
+      margin-top: 0.3rem;
+      letter-spacing: 0.04em;
+    }
+
+    .cal-jump-btn:hover { filter: brightness(1.1); }
+
+    .cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      background: #f0ece0;
+      padding: 0.35rem 0.75rem;
+    }
+
+    .cal-weekday {
+      text-align: center;
+      font-size: 0.7rem;
+      font-family: sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    .cal-weekday.we { color: var(--orange); }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+      padding: 0.5rem 0.75rem 0.75rem;
+    }
+
+    .cal-cell {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      border-radius: 7px;
+      font-family: sans-serif;
+      position: relative;
+    }
+
+    .cal-cell.cal-other { color: #ccc; }
+    .cal-cell.cal-past:not(.cal-today) { opacity: 0.45; }
+
+    .cal-cell.cal-today {
+      background: var(--orange) !important;
+      color: #fff !important;
+      font-weight: bold;
+      border-radius: 50%;
+    }
+
+    .cal-cell.trip-travel  { background: #dbeafe; color: #1d40ae; font-weight: 600; }
+    .cal-cell.trip-austria { background: #fee2e2; color: #991b1b; font-weight: 600; }
+    .cal-cell.trip-tuscany { background: #d1fae5; color: #065f46; font-weight: 600; }
+    .cal-cell.trip-levanto { background: #e0f2fe; color: #075985; font-weight: 600; }
+    .cal-cell.trip-home    { background: #fef3c7; color: #78350f; font-weight: 600; }
+
+    .cal-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
+      padding: 0.75rem 0 0;
+      font-size: 0.78rem;
+      font-family: sans-serif;
+    }
+
+    .cal-legend-item { display: flex; align-items: center; gap: 0.35rem; }
+
+    .cal-dot {
+      width: 13px; height: 13px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .cal-dot.d-today   { background: var(--orange); border-radius: 50%; }
+    .cal-dot.d-travel  { background: #dbeafe; border: 1px solid #93c5fd; }
+    .cal-dot.d-austria { background: #fee2e2; border: 1px solid #fca5a5; }
+    .cal-dot.d-tuscany { background: #d1fae5; border: 1px solid #6ee7b7; }
+    .cal-dot.d-levanto { background: #e0f2fe; border: 1px solid #7dd3fc; }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
@@ -444,6 +599,46 @@
 </div>
 
 <main>
+
+  <!-- ── KALENDER ── -->
+  <section>
+    <h2>Kalender</h2>
+
+    <div class="countdown-bar">
+      <div id="countdown-big" class="countdown-big"></div>
+      <div id="countdown-unit" class="countdown-unit"></div>
+      <div id="countdown-sub" class="countdown-sub"></div>
+    </div>
+
+    <div class="calendar-wrapper">
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="calPrev()" aria-label="Vorige maand">&#8249;</button>
+        <div class="cal-nav-center">
+          <div id="cal-month-label"></div>
+          <button class="cal-jump-btn" id="cal-jump-btn" onclick="calGoJuly()">→ Juli 2026</button>
+        </div>
+        <button class="cal-nav-btn" onclick="calNext()" aria-label="Volgende maand">&#8250;</button>
+      </div>
+      <div class="cal-weekdays">
+        <div class="cal-weekday">Ma</div>
+        <div class="cal-weekday">Di</div>
+        <div class="cal-weekday">Wo</div>
+        <div class="cal-weekday">Do</div>
+        <div class="cal-weekday">Vr</div>
+        <div class="cal-weekday we">Za</div>
+        <div class="cal-weekday we">Zo</div>
+      </div>
+      <div id="cal-grid" class="cal-grid"></div>
+    </div>
+
+    <div class="cal-legend" id="cal-legend">
+      <div class="cal-legend-item"><div class="cal-dot d-today"></div> Vandaag</div>
+      <div class="cal-legend-item"><div class="cal-dot d-travel"></div> Rijdag</div>
+      <div class="cal-legend-item"><div class="cal-dot d-austria"></div> Serfaus</div>
+      <div class="cal-legend-item"><div class="cal-dot d-tuscany"></div> Toscane</div>
+      <div class="cal-legend-item"><div class="cal-dot d-levanto"></div> Levanto</div>
+    </div>
+  </section>
 
   <!-- ── TIMELINE ── -->
   <section>
@@ -1036,6 +1231,134 @@
   }
 
   updateTracker();
+
+  // ── KALENDER ──
+  let _cY, _cM;
+
+  const MONTH_NAMES = ['Januari','Februari','Maart','April','Mei','Juni',
+                        'Juli','Augustus','September','Oktober','November','December'];
+
+  function calTripClass(y, m, d) {
+    if (y !== 2026 || m !== 6) return null; // only July 2026
+    if (d === 3 || d === 6 || d === 13 || d === 16) return 'trip-travel';
+    if (d === 4 || d === 5)                          return 'trip-austria';
+    if (d >= 7  && d <= 12)                          return 'trip-tuscany';
+    if (d === 14 || d === 15)                        return 'trip-levanto';
+    if (d === 17)                                    return 'trip-home';
+    return null;
+  }
+
+  function calRender() {
+    const now    = new Date();
+    const tY = now.getFullYear(), tM = now.getMonth(), tD = now.getDate();
+    const isJuly = _cY === 2026 && _cM === 6;
+
+    document.getElementById('cal-month-label').textContent = `${MONTH_NAMES[_cM]} ${_cY}`;
+    document.getElementById('cal-jump-btn').style.display  = isJuly ? 'none' : 'inline-block';
+    document.getElementById('cal-legend').style.display    = isJuly ? 'flex' : 'none';
+
+    const firstWd   = new Date(_cY, _cM, 1).getDay();           // 0=Sun
+    const offset    = firstWd === 0 ? 6 : firstWd - 1;          // Mon-first
+    const daysInMo  = new Date(_cY, _cM + 1, 0).getDate();
+    const daysInPrv = new Date(_cY, _cM, 0).getDate();
+    const total     = Math.ceil((offset + daysInMo) / 7) * 7;
+
+    const grid = document.getElementById('cal-grid');
+    grid.innerHTML = '';
+
+    const todayMs = new Date(tY, tM, tD).getTime();
+
+    for (let i = 0; i < total; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cal-cell';
+
+      let d, m, y;
+
+      if (i < offset) {
+        d = daysInPrv - offset + i + 1;
+        m = _cM - 1; y = _cY;
+        if (m < 0) { m = 11; y--; }
+        cell.classList.add('cal-other');
+      } else if (i >= offset + daysInMo) {
+        d = i - offset - daysInMo + 1;
+        m = _cM + 1; y = _cY;
+        if (m > 11) { m = 0; y++; }
+        cell.classList.add('cal-other');
+      } else {
+        d = i - offset + 1; m = _cM; y = _cY;
+
+        if (new Date(y, m, d).getTime() < todayMs) cell.classList.add('cal-past');
+
+        const tc = calTripClass(y, m, d);
+        if (tc) cell.classList.add(tc);
+
+        if (y === tY && m === tM && d === tD) cell.classList.add('cal-today');
+      }
+
+      cell.textContent = d;
+      grid.appendChild(cell);
+    }
+  }
+
+  function calCountdown() {
+    const now      = new Date();
+    const tripStart = new Date(2026, 6, 3);
+    const tripEnd   = new Date(2026, 6, 18);
+
+    const bigEl  = document.getElementById('countdown-big');
+    const unitEl = document.getElementById('countdown-unit');
+    const subEl  = document.getElementById('countdown-sub');
+
+    if (now >= tripEnd) {
+      bigEl.textContent  = '🎉';
+      unitEl.textContent = '';
+      subEl.textContent  = 'De roadtrip zit erop — wat een reis!';
+      return;
+    }
+
+    if (now >= tripStart) {
+      const day = Math.floor((now - tripStart) / 86400000) + 1;
+      bigEl.textContent  = day;
+      unitEl.textContent = `dag van de roadtrip`;
+      subEl.textContent  = '🇮🇹 Genieten maar!';
+      return;
+    }
+
+    // Before trip: calculate months + leftover days
+    const today0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const totalDays = Math.ceil((tripStart - today0) / 86400000);
+
+    let months = 0, cursor = new Date(today0);
+    while (true) {
+      const next = new Date(cursor.getFullYear(), cursor.getMonth() + 1, cursor.getDate());
+      if (next >= tripStart) break;
+      months++;
+      cursor = next;
+    }
+    const days = Math.ceil((tripStart - cursor) / 86400000);
+
+    bigEl.textContent  = totalDays;
+    unitEl.textContent = totalDays === 1 ? 'dag tot vertrek' : 'dagen tot vertrek';
+
+    if (months > 0) {
+      subEl.textContent = `Dat is ${months} maand${months > 1 ? 'en' : ''} en ${days} dag${days !== 1 ? 'en' : ''} — vertrek 3 juli 2026 🚗`;
+    } else {
+      subEl.textContent = `Vertrek op 3 juli 2026 🚗`;
+    }
+  }
+
+  function calPrev()    { _cM--; if (_cM < 0)  { _cM = 11; _cY--; } calRender(); }
+  function calNext()    { _cM++; if (_cM > 11) { _cM = 0;  _cY++; } calRender(); }
+  function calGoJuly()  { _cY = 2026; _cM = 6; calRender(); }
+
+  function calInit() {
+    const now = new Date();
+    _cY = now.getFullYear(); _cM = now.getMonth();
+    calRender();
+    calCountdown();
+  }
+
+  calInit();
 
   // ── DAGAGENDA ACCORDION & TODAY HIGHLIGHT ──
   function toggleDay(header) {
