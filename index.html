@@ -297,6 +297,121 @@
     .strip-levanto { background: linear-gradient(90deg, #009246 33%, #fff 33%, #fff 66%, #ce2b37 66%); }
     .strip-transit { background: linear-gradient(90deg, #d52b1e 33%, #fff 33%, #fff 66%, #d52b1e 66%); }
 
+    /* ── DAGAGENDA TOSCANE ── */
+    .agenda-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .agenda-day {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .agenda-day-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 1.2rem;
+      cursor: pointer;
+      user-select: none;
+      background: #f7f4e9;
+      border-left: 4px solid var(--green);
+    }
+
+    .agenda-day-header:hover { background: #efe9d4; }
+
+    .agenda-day.today .agenda-day-header {
+      border-left-color: var(--orange);
+      background: #fff4eb;
+    }
+
+    .agenda-day-num {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green);
+      min-width: 2.2rem;
+      line-height: 1;
+    }
+
+    .agenda-day.today .agenda-day-num { color: var(--orange); }
+
+    .agenda-day-meta { flex: 1; }
+
+    .agenda-day-date {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      font-family: sans-serif;
+    }
+
+    .agenda-day-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--blue);
+    }
+
+    .agenda-day-icon { font-size: 1.6rem; }
+
+    .agenda-today-badge {
+      font-size: 0.7rem;
+      font-family: sans-serif;
+      background: var(--orange);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.15rem 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .agenda-chevron {
+      font-size: 0.8rem;
+      color: var(--muted);
+      transition: transform 0.2s;
+    }
+
+    .agenda-day.open .agenda-chevron { transform: rotate(180deg); }
+
+    .agenda-body {
+      display: none;
+      padding: 0.9rem 1.2rem 1.1rem 1.2rem;
+      border-top: 1px solid #ede7d0;
+    }
+
+    .agenda-day.open .agenda-body { display: block; }
+
+    .agenda-slots {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .agenda-slot {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .slot-label {
+      font-size: 0.7rem;
+      font-family: sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      min-width: 70px;
+      padding-top: 0.15rem;
+    }
+
+    .slot-text {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
@@ -426,6 +541,238 @@
           <div class="timeline-title">Drachten &amp; Ureterp</div>
           <div class="timeline-desc">
             Thuisgekomen met volle accu's, lege koffers en een hoofd vol herinneringen!
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── DAGAGENDA TOSCANE ── -->
+  <section>
+    <h2>Dagagenda Toscane (6 – 13 juli)</h2>
+    <div class="agenda-grid" id="agenda-grid">
+
+      <div class="agenda-day" data-day="6">
+        <div class="agenda-day-header" onclick="toggleDay(this)">
+          <div class="agenda-day-num">6</div>
+          <div class="agenda-day-meta">
+            <div class="agenda-day-date">Maandag 6 juli &mdash; aankomstdag</div>
+            <div class="agenda-day-title">Aankomst &amp; eerste indruk</div>
+          </div>
+          <div class="agenda-day-icon">🚗</div>
+          <div class="agenda-chevron">▼</div>
+        </div>
+        <div class="agenda-body">
+          <div class="agenda-slots">
+            <div class="agenda-slot">
+              <div class="slot-label">Overdag</div>
+              <div class="slot-text">Rijden vanuit Serfaus richting Toscane — genieten van het Italiaanse landschap onderweg.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Middag</div>
+              <div class="slot-text">Inchecken op de accommodatie, koffers uitpakken, even bijkomen van de rit.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Avond</div>
+              <div class="slot-text">Eerste Italiaanse diner samen — proeven van lokale pasta en een glas Chianti. Verwelkoming van familie Hoff, Jelmer &amp; Jolijn met de kids.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="agenda-day" data-day="7">
+        <div class="agenda-day-header" onclick="toggleDay(this)">
+          <div class="agenda-day-num">7</div>
+          <div class="agenda-day-meta">
+            <div class="agenda-day-date">Dinsdag 7 juli</div>
+            <div class="agenda-day-title">Siena</div>
+          </div>
+          <div class="agenda-day-icon">🏛️</div>
+          <div class="agenda-chevron">▼</div>
+        </div>
+        <div class="agenda-body">
+          <div class="agenda-slots">
+            <div class="agenda-slot">
+              <div class="slot-label">Ochtend</div>
+              <div class="slot-text">Rustig ontbijt, dan op pad naar Siena (ca. 30–60 min rijden, afhankelijk van de verblijfplaats).</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Middag</div>
+              <div class="slot-text">Piazza del Campo, de Duomo di Siena en een ijsje in de schaduw. Verdwalen in de middeleeuwse straatjes.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Avond</div>
+              <div class="slot-text">Terug naar de accommodatie — aperitivo bij zonsondergang over de Toscaanse heuvels.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="agenda-day" data-day="8">
+        <div class="agenda-day-header" onclick="toggleDay(this)">
+          <div class="agenda-day-num">8</div>
+          <div class="agenda-day-meta">
+            <div class="agenda-day-date">Woensdag 8 juli</div>
+            <div class="agenda-day-title">San Gimignano</div>
+          </div>
+          <div class="agenda-day-icon">🗼</div>
+          <div class="agenda-chevron">▼</div>
+        </div>
+        <div class="agenda-body">
+          <div class="agenda-slots">
+            <div class="agenda-slot">
+              <div class="slot-label">Ochtend</div>
+              <div class="slot-text">Vroeg naar San Gimignano — de 'stad van de torens'. Voor de drukte erbij zijn.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Middag</div>
+              <div class="slot-text">Rondslenteren door de smalle steegjes, klimmen op een toren voor het uitzicht, en het wereldberoemde gelato van Gelateria Dondoli proberen.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Avond</div>
+              <div class="slot-text">Diner bij de accommodatie of in een lokale trattoria in de buurt.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="agenda-day" data-day="9">
+        <div class="agenda-day-header" onclick="toggleDay(this)">
+          <div class="agenda-day-num">9</div>
+          <div class="agenda-day-meta">
+            <div class="agenda-day-date">Donderdag 9 juli</div>
+            <div class="agenda-day-title">Chiantistreek</div>
+          </div>
+          <div class="agenda-day-icon">🍷</div>
+          <div class="agenda-chevron">▼</div>
+        </div>
+        <div class="agenda-body">
+          <div class="agenda-slots">
+            <div class="agenda-slot">
+              <div class="slot-label">Ochtend</div>
+              <div class="slot-text">Ontspannen ochtend — zwembad of wandeling rondom de accommodatie.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Middag</div>
+              <div class="slot-text">Rondrit door de Chiantistreek: rollende heuvels, cipressenlanen en wijngaarden. Eventueel een wijnproeverij op een lokale fattoria.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Avond</div>
+              <div class="slot-text">Grote groepsbarbecue of gezamenlijk koken bij de accommodatie.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="agenda-day" data-day="10">
+        <div class="agenda-day-header" onclick="toggleDay(this)">
+          <div class="agenda-day-num">10</div>
+          <div class="agenda-day-meta">
+            <div class="agenda-day-date">Vrijdag 10 juli</div>
+            <div class="agenda-day-title">Florence</div>
+          </div>
+          <div class="agenda-day-icon">🌸</div>
+          <div class="agenda-chevron">▼</div>
+        </div>
+        <div class="agenda-body">
+          <div class="agenda-slots">
+            <div class="agenda-slot">
+              <div class="slot-label">Ochtend</div>
+              <div class="slot-text">Vroeg vertrek naar Florence. Piazzale Michelangelo voor het panorama, daarna de Duomo van dichtbij bewonderen.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Middag</div>
+              <div class="slot-text">Ponte Vecchio, Piazza della Signoria en voor wie wil een bezoek aan de Uffizi (tickets vooraf reserveren!). Lunchen bij een trattoria.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Avond</div>
+              <div class="slot-text">Terug naar de accommodatie — vermoeide benen, volle harten.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="agenda-day" data-day="11">
+        <div class="agenda-day-header" onclick="toggleDay(this)">
+          <div class="agenda-day-num">11</div>
+          <div class="agenda-day-meta">
+            <div class="agenda-day-date">Zaterdag 11 juli</div>
+            <div class="agenda-day-title">Val d'Orcia &amp; Pienza</div>
+          </div>
+          <div class="agenda-day-icon">🌄</div>
+          <div class="agenda-chevron">▼</div>
+        </div>
+        <div class="agenda-body">
+          <div class="agenda-slots">
+            <div class="agenda-slot">
+              <div class="slot-label">Ochtend</div>
+              <div class="slot-text">Rijden naar de Val d'Orcia — het UNESCO-landschap met de iconische cipressenlanen bij Monticchiello of Bagno Vignoni.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Middag</div>
+              <div class="slot-text">Pienza bezoeken: het 'ideale renaissance-stadje'. Pecorino kaas proeven recht uit de winkel, lunchen op het terras met uitzicht over de vallei.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Avond</div>
+              <div class="slot-text">Eventueel stop in Montalcino (Brunello wijn) op de terugweg. Diner bij de accommodatie.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="agenda-day" data-day="12">
+        <div class="agenda-day-header" onclick="toggleDay(this)">
+          <div class="agenda-day-num">12</div>
+          <div class="agenda-day-meta">
+            <div class="agenda-day-date">Zondag 12 juli</div>
+            <div class="agenda-day-title">Vrije dag &amp; ontspanning</div>
+          </div>
+          <div class="agenda-day-icon">☀️</div>
+          <div class="agenda-chevron">▼</div>
+        </div>
+        <div class="agenda-body">
+          <div class="agenda-slots">
+            <div class="agenda-slot">
+              <div class="slot-label">Ochtend</div>
+              <div class="slot-text">Uitslapen, rustig ontbijt, kinderen spelen — geen agenda.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Middag</div>
+              <div class="slot-text">Zwembad, een lokale markt verkennen, of de omgeving op de fiets verkennen. Wie wil kan nog een stadje pakken.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Avond</div>
+              <div class="slot-text">Laatste gezamenlijk diner in Toscane — koffertjes half pakken voor morgen.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="agenda-day" data-day="13">
+        <div class="agenda-day-header" onclick="toggleDay(this)">
+          <div class="agenda-day-num">13</div>
+          <div class="agenda-day-meta">
+            <div class="agenda-day-date">Maandag 13 juli &mdash; vertrekdag</div>
+            <div class="agenda-day-title">Toscane → Levanto</div>
+          </div>
+          <div class="agenda-day-icon">🚗</div>
+          <div class="agenda-chevron">▼</div>
+        </div>
+        <div class="agenda-body">
+          <div class="agenda-slots">
+            <div class="agenda-slot">
+              <div class="slot-label">Ochtend</div>
+              <div class="slot-text">Uitchecken, koffers in de auto, laatste blik op de Toscaanse heuvels.</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Middag</div>
+              <div class="slot-text">Rijden naar Levanto aan de Ligurese kust (ca. 2–2,5 uur).</div>
+            </div>
+            <div class="agenda-slot">
+              <div class="slot-label">Avond</div>
+              <div class="slot-text">Inchecken in Levanto, eerste verkenning van het stadje en de haven. Eerste visgerecht op het menu!</div>
+            </div>
           </div>
         </div>
       </div>
@@ -689,6 +1036,32 @@
   }
 
   updateTracker();
+
+  // ── DAGAGENDA ACCORDION & TODAY HIGHLIGHT ──
+  function toggleDay(header) {
+    const day = header.closest('.agenda-day');
+    day.classList.toggle('open');
+  }
+
+  function highlightTodayInAgenda() {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = now.getMonth() + 1;
+    const d = now.getDate();
+
+    if (y !== 2026 || m !== 7 || d < 6 || d > 13) return;
+
+    const dayEl = document.querySelector(`.agenda-day[data-day="${d}"]`);
+    if (!dayEl) return;
+
+    dayEl.classList.add('today', 'open');
+
+    const header = dayEl.querySelector('.agenda-day-header');
+    const meta = dayEl.querySelector('.agenda-day-date');
+    if (meta) meta.insertAdjacentHTML('beforebegin', '<div class="agenda-today-badge">Vandaag</div>');
+  }
+
+  highlightTodayInAgenda();
 </script>
 
 </body>
