@@ -682,6 +682,81 @@
 
     .wheel-close-btn:hover { filter: brightness(1.1); }
 
+    /* ── ROUTEKAART ── */
+    #routemap { height: 400px; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+
+    /* ── PAKLIJST ── */
+    .pak-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(228px, 1fr)); gap: 1rem; }
+    .pak-cat  { background: var(--card-bg); border-radius: 12px; padding: 1rem 1.1rem; box-shadow: var(--shadow); }
+    .pak-cat-title { font-size: .93rem; font-weight: bold; color: var(--blue); margin-bottom: .6rem; padding-bottom: .35rem; border-bottom: 1px solid #ede7d0; }
+    .pak-item { display: flex; align-items: center; gap: .55rem; padding: .27rem 0; font-size: .84rem; cursor: pointer; user-select: none; }
+    .pak-item input { width: 15px; height: 15px; accent-color: var(--green); cursor: pointer; flex-shrink: 0; }
+    .pak-item.done span { text-decoration: line-through; color: var(--muted); }
+    .pak-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+    .pak-count-lbl { font-size: .8rem; font-family: sans-serif; color: var(--muted); }
+    .pak-reset { background: none; border: 1px solid #d1c9a0; color: var(--muted); border-radius: 999px; padding: .28rem .85rem; font-size: .76rem; cursor: pointer; font-family: sans-serif; }
+    .pak-reset:hover { border-color: var(--red); color: var(--red); }
+
+    /* ── ITALIAANSE ZINNEN ── */
+    .zinnen-cats { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+    .zinnen-cat-btn { background: var(--card-bg); border: 1px solid #d1c9a0; border-radius: 999px; padding: .28rem .8rem; font-size: .8rem; cursor: pointer; font-family: sans-serif; }
+    .zinnen-cat-btn.on { background: var(--green); color: #fff; border-color: var(--green); }
+    .zinnen-list { display: flex; flex-direction: column; gap: .5rem; }
+    .zin { background: var(--card-bg); border-radius: 10px; padding: .75rem 1rem; box-shadow: 0 2px 8px rgba(0,0,0,.06); cursor: pointer; }
+    .zin-it  { font-size: .98rem; font-weight: bold; color: var(--blue); }
+    .zin-nl  { font-size: .85rem; margin-top: .1rem; color: var(--text); }
+    .zin-fon { font-size: .76rem; color: var(--orange); font-style: italic; margin-top: .15rem; display: none; }
+    .zin.open .zin-fon { display: block; }
+    .zin-hint { font-size: .7rem; color: var(--muted); margin-top: .55rem; font-family: sans-serif; }
+
+    /* ── TIPS PER BESTEMMING ── */
+    .tips-cats { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+    .tips-cat-btn { background: var(--card-bg); border: 1px solid #d1c9a0; border-radius: 999px; padding: .28rem .8rem; font-size: .8rem; cursor: pointer; font-family: sans-serif; }
+    .tips-cat-btn.on { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .tips-panel { display: none; }
+    .tips-panel.on { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: .9rem; }
+    .tip-card { background: var(--card-bg); border-radius: 10px; padding: .85rem 1rem; box-shadow: 0 2px 8px rgba(0,0,0,.07); }
+    .tip-card-head { font-weight: bold; color: var(--blue); font-size: .88rem; margin-bottom: .28rem; }
+    .tip-card-body { font-size: .83rem; line-height: 1.5; color: var(--text); }
+
+    /* ── GROEPSSTEMMING ── */
+    .stem-intro { font-size: .91rem; color: var(--muted); margin-bottom: 1rem; }
+    .stem-opts  { display: flex; flex-direction: column; gap: .5rem; }
+    .stem-row   { display: flex; align-items: center; background: var(--card-bg); border-radius: 10px; padding: .6rem 1rem; box-shadow: 0 2px 8px rgba(0,0,0,.07); gap: .75rem; }
+    .stem-emoji { font-size: 1.25rem; }
+    .stem-label { flex: 1; font-size: .92rem; }
+    .stem-count { font-family: sans-serif; font-size: 1.05rem; font-weight: bold; min-width: 28px; text-align: center; color: var(--blue); }
+    .stem-btn   { background: var(--green); color: #fff; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; flex-shrink: 0; }
+    .stem-btn.minus { background: #ddd; color: #666; font-size: 1.1rem; }
+    .stem-btn:hover { filter: brightness(1.1); }
+    .stem-footer { display: flex; justify-content: space-between; align-items: center; margin-top: .9rem; }
+    .stem-total  { font-size: .8rem; font-family: sans-serif; color: var(--muted); }
+    .stem-reset  { background: none; border: 1px solid #d1c9a0; color: var(--muted); border-radius: 999px; padding: .28rem .85rem; font-size: .76rem; cursor: pointer; font-family: sans-serif; }
+    .stem-reset:hover { border-color: var(--red); color: var(--red); }
+
+    /* ── QUIZ ── */
+    .quiz-wrap  { background: var(--card-bg); border-radius: 14px; padding: 1.5rem 1.4rem; box-shadow: var(--shadow); }
+    .quiz-scr   { display: none; }
+    .quiz-scr.on { display: block; }
+    .quiz-start-inner { text-align: center; padding: 1.5rem 0; }
+    .quiz-sub   { font-size: .88rem; color: var(--muted); margin-bottom: 1rem; }
+    .quiz-start-btn { background: var(--blue); color: #fff; border: none; border-radius: 999px; padding: .8rem 2.4rem; font-size: 1rem; font-weight: bold; font-family: 'Georgia', serif; cursor: pointer; box-shadow: var(--shadow); }
+    .quiz-start-btn:hover { filter: brightness(1.1); }
+    .quiz-prog  { font-size: .74rem; font-family: sans-serif; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: .5rem; }
+    .quiz-q-txt { font-size: 1rem; font-weight: bold; color: var(--blue); margin-bottom: .9rem; line-height: 1.4; }
+    .quiz-opts  { display: flex; flex-direction: column; gap: .45rem; }
+    .quiz-opt   { background: var(--cream); border: 2px solid #e0d9c0; border-radius: 10px; padding: .65rem 1rem; font-size: .9rem; cursor: pointer; text-align: left; font-family: 'Georgia', serif; transition: border-color .15s; }
+    .quiz-opt:hover:not([disabled]) { border-color: var(--blue); }
+    .quiz-opt.correct { background: #d1fae5; border-color: #059669; color: #065f46; }
+    .quiz-opt.wrong   { background: #fee2e2; border-color: #dc2626; color: #991b1b; }
+    .quiz-fb    { font-size: .84rem; color: var(--muted); font-style: italic; margin-top: .6rem; min-height: 1.1em; }
+    .quiz-next  { margin-top: .9rem; background: var(--orange); color: #fff; border: none; border-radius: 999px; padding: .5rem 1.4rem; font-size: .88rem; font-family: 'Georgia', serif; cursor: pointer; display: none; }
+    .quiz-res-inner { text-align: center; padding: 1rem 0; }
+    .quiz-score { font-size: 3.5rem; font-weight: 700; color: var(--blue); line-height: 1; }
+    .quiz-score-lbl { font-size: .8rem; font-family: sans-serif; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+    .quiz-res-msg { font-size: .98rem; margin: .8rem 0 1.5rem; }
+    .quiz-restart { background: var(--green); color: #fff; border: none; border-radius: 999px; padding: .65rem 1.8rem; font-size: .9rem; font-family: 'Georgia', serif; cursor: pointer; }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
@@ -697,6 +772,8 @@
       .timeline-dot { width: 42px; height: 42px; font-size: 1.1rem; }
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </head>
 <body>
 
@@ -1207,6 +1284,67 @@
     </div>
   </section>
 
+  <!-- ── ROUTEKAART ── -->
+  <section>
+    <h2>Routekaart 🗺️</h2>
+    <div id="routemap"></div>
+  </section>
+
+  <!-- ── TIPS PER BESTEMMING ── -->
+  <section>
+    <h2>Tips per bestemming 🍽️</h2>
+    <div class="tips-cats" id="tips-cats"></div>
+    <div id="tips-panels"></div>
+  </section>
+
+  <!-- ── ITALIAANSE ZINNEN ── -->
+  <section>
+    <h2>Handige Italiaanse zinnen 🇮🇹</h2>
+    <div class="zinnen-cats" id="zinnen-cats"></div>
+    <div class="zinnen-list" id="zinnen-list"></div>
+  </section>
+
+  <!-- ── PAKLIJST ── -->
+  <section>
+    <h2>Paklijst ✅</h2>
+    <div id="pak-container"></div>
+  </section>
+
+  <!-- ── GROEPSSTEMMING ── -->
+  <section>
+    <h2>Groepsstemming 🗳️</h2>
+    <p class="stem-intro">Verzamel rondom één telefoon en stem samen op de activiteit van de dag!</p>
+    <div id="stem-container"></div>
+  </section>
+
+  <!-- ── QUIZ ── -->
+  <section>
+    <h2>Italy-quiz 🧠</h2>
+    <div class="quiz-wrap">
+      <div class="quiz-scr on" id="quiz-start">
+        <div class="quiz-start-inner">
+          <p class="quiz-sub">10 vragen over jullie bestemmingen — wie is de Italië-expert?</p>
+          <button class="quiz-start-btn" onclick="quizStart()">🧠 Start de quiz!</button>
+        </div>
+      </div>
+      <div class="quiz-scr" id="quiz-q">
+        <div class="quiz-prog" id="quiz-prog"></div>
+        <div class="quiz-q-txt" id="quiz-q-txt"></div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="quiz-next" id="quiz-next" onclick="quizNext()">Volgende →</button>
+      </div>
+      <div class="quiz-scr" id="quiz-res">
+        <div class="quiz-res-inner">
+          <div class="quiz-score" id="quiz-score"></div>
+          <div class="quiz-score-lbl">punten</div>
+          <div class="quiz-res-msg" id="quiz-res-msg"></div>
+          <button class="quiz-restart" onclick="quizRestart()">Opnieuw proberen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <div class="wheel-overlay" id="wheelOverlay" onclick="wheelClose()">
@@ -1711,6 +1849,368 @@
   }
 
   highlightTodayInAgenda();
+
+  // ── 1. ROUTEKAART ──
+  (function mapInit() {
+    const STOPS = [
+      { latlng: [53.10, 6.05], label: 'Drachten & Ureterp', sub: 'Vertrek 3 juli', color: '#1d3557', phase: 'home' },
+      { latlng: [47.04, 10.61], label: 'Serfaus', sub: '3–6 juli', color: '#c0392b', phase: 'austria' },
+      { latlng: [43.47, 11.04], label: 'Toscane', sub: '6–13 juli', color: '#2d6a4f', phase: 'tuscany' },
+      { latlng: [44.17, 9.61], label: 'Levanto', sub: '13–16 juli', color: '#0077b6', phase: 'levanto' },
+      { latlng: [46.95, 8.30], label: 'Zwitserland / Duitsland', sub: 'Tussenstop 16 juli', color: '#e07b39', phase: 'travel' },
+      { latlng: [53.10, 6.05], label: 'Thuis!', sub: '17 juli', color: '#1d3557', phase: 'home' },
+    ];
+
+    const map = L.map('routemap', { zoomControl: true, scrollWheelZoom: false })
+                 .setView([47, 9], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap',
+      maxZoom: 18
+    }).addTo(map);
+
+    // Route polyline
+    L.polyline(STOPS.map(s => s.latlng), { color: '#e07b39', weight: 3, dashArray: '6 6' }).addTo(map);
+
+    // Stop markers
+    const tripPhase = getTripStatus().phase;
+    STOPS.forEach((s, i) => {
+      const isHere = s.phase === tripPhase && s.phase !== 'home';
+      const icon = L.divIcon({
+        className: '',
+        html: `<div style="background:${s.color};width:${isHere?18:12}px;height:${isHere?18:12}px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3);${isHere?'outline:3px solid '+s.color+';outline-offset:3px':''}"></div>`,
+        iconAnchor: [isHere?9:6, isHere?9:6]
+      });
+      L.marker(s.latlng, { icon })
+       .addTo(map)
+       .bindPopup(`<b>${s.label}</b><br><span style="font-size:.85em;color:#666">${s.sub}</span>${isHere ? '<br><b style="color:#e07b39">📍 Jullie zijn hier!</b>' : ''}`);
+    });
+  })();
+
+  // ── 2. TIPS PER BESTEMMING ──
+  (function tipsInit() {
+    const TIPS = {
+      '🏔️ Serfaus': [
+        { head: '🚡 Bergbahn Fiss-Ladis', body: 'Gondelsysteem voor wandelaars en mountainbikers — spectaculair uitzicht op de Alpen.' },
+        { head: '🥾 Sonnenterrasse route', body: 'Makkelijke wandelroute met panoramisch uitzicht, goed te doen met kinderen.' },
+        { head: '🚇 Dorfbahn', body: 'Serfaus heeft een autovrij centrum met een gratis ondergrondse kabelbaan door het dorp.' },
+        { head: '🅿️ Parkeren', body: 'Auto gratis in het dal parkeren. Gratis pendel brengt je omhoog naar het dorp.' },
+        { head: '💡 Tip', body: 'Bezoek het dorp \'s avonds — sfeervol, autovrij en rustiger dan overdag.' },
+      ],
+      '🌻 Toscane': [
+        { head: '🍽️ Osteria Le Logge (Siena)', body: 'Klassieke Toscaanse keuken in een historisch pand. Reserveer van tevoren!' },
+        { head: '🍦 Gelateria Dondoli (San Gimignano)', body: 'Meerdere keren wereldkampioen gelato — lange rij maar absoluut de moeite waard.' },
+        { head: '🍷 Badia a Coltibuono (Chianti)', body: 'Wijnhuis in een middeleeuwse abdij. Proeverij met rondleiding, prachtige omgeving.' },
+        { head: '🅿️ Parkeren Siena', body: 'Volg borden naar "parcheggio". Daarna gaat er een roltraprij naar het historisch centrum.' },
+        { head: '💡 Tip', body: 'Bezoek Siena vóór 9u of na 18u — het centrum is dan heerlijk rustig.' },
+      ],
+      '🌊 Levanto': [
+        { head: '🚢 Boot naar Cinque Terre', body: 'Vertrekt vanuit Levanto haven. Goede manier om meerdere dorpen te combineren zonder te lopen.' },
+        { head: '🥾 Wandelpad naar Monterosso', body: 'Mooie route (~2u). Let op: sommige paden kunnen gesloten zijn — check vooraf.' },
+        { head: '🍽️ Ristorante La Lanterna', body: 'Verse vis direct van de boot, terras aan het strand — heerlijk eenvoudig.' },
+        { head: '🎫 Cinque Terre Card', body: 'Combi-kaart voor trein + wandelpaden. Te koop bij het station in Levanto.' },
+        { head: '💡 Tip', body: 'Vertrek vroeg naar Cinque Terre — voor 10u is het al druk, daarna erg vol.' },
+      ],
+      '🌸 Florence': [
+        { head: '🎫 Uffizi Museum', body: 'Online reserveren is VERPLICHT in de zomer. Boek via uffizi.it, weken van tevoren.' },
+        { head: '📸 Piazzale Michelangelo', body: 'Beste panorama van Florence. Loop er vroeg naartoe of ga \'s avonds — prachtig bij zonsondergang.' },
+        { head: '🌉 Ponte Vecchio', body: 'Mooiste \'s ochtends vroeg of laat op de avond als de drukte weg is.' },
+        { head: '🍕 Trattoria Mario', body: 'Bij Mercato Centrale — staand eten, super lokaal en goedkoop. Kom vroeg want het is snel vol.' },
+        { head: '💡 Tip', body: 'Het centrum is goed lopend te doen. Neem comfortabele schoenen en veel water mee.' },
+      ],
+    };
+
+    const cats = Object.keys(TIPS);
+    const catsEl   = document.getElementById('tips-cats');
+    const panelsEl = document.getElementById('tips-panels');
+
+    cats.forEach((cat, ci) => {
+      const btn = document.createElement('button');
+      btn.className = 'tips-cat-btn' + (ci === 0 ? ' on' : '');
+      btn.textContent = cat;
+      btn.onclick = () => {
+        document.querySelectorAll('.tips-cat-btn').forEach(b => b.classList.remove('on'));
+        document.querySelectorAll('.tips-panel').forEach(p => p.classList.remove('on'));
+        btn.classList.add('on');
+        document.getElementById('tips-' + ci).classList.add('on');
+      };
+      catsEl.appendChild(btn);
+
+      const panel = document.createElement('div');
+      panel.className = 'tips-panel' + (ci === 0 ? ' on' : '');
+      panel.id = 'tips-' + ci;
+      TIPS[cat].forEach(tip => {
+        panel.innerHTML += `<div class="tip-card"><div class="tip-card-head">${tip.head}</div><div class="tip-card-body">${tip.body}</div></div>`;
+      });
+      panelsEl.appendChild(panel);
+    });
+  })();
+
+  // ── 3. ITALIAANSE ZINNEN ──
+  (function zinnenInit() {
+    const ZINNEN = {
+      '🍽️ Restaurant': [
+        { it: 'Buonasera, un tavolo per quattro?', nl: 'Goedenavond, een tafel voor vier?', fon: 'bwoh-nah-SEH-rah, oon TAH-voh-loh pehr KWAT-troh' },
+        { it: 'Il menù, per favore.', nl: 'De menukaart, alsjeblieft.', fon: 'eel meh-NOO, pehr fah-VOH-reh' },
+        { it: 'Che cosa mi consiglia?', nl: 'Wat beveelt u aan?', fon: 'keh KOH-zah mee kon-SEEL-yah' },
+        { it: 'È delizioso!', nl: 'Het is heerlijk!', fon: 'eh deh-leets-YOH-zoh' },
+        { it: 'Il conto, per favore.', nl: 'De rekening, alsjeblieft.', fon: 'eel KON-toh, pehr fah-VOH-reh' },
+        { it: 'Possiamo pagare separatamente?', nl: 'Kunnen we apart betalen?', fon: 'pos-SYAH-moh pah-GAH-reh seh-pah-rah-TAH-men-teh' },
+      ],
+      '🗺️ Op straat': [
+        { it: 'Dov\'è...?', nl: 'Waar is...?', fon: 'doh-VEH' },
+        { it: 'Quanto dista?', nl: 'Hoe ver is het?', fon: 'KWAN-toh DEES-tah' },
+        { it: 'Parla inglese?', nl: 'Spreekt u Engels?', fon: 'PAR-lah een-GLEH-zeh' },
+        { it: 'Non capisco.', nl: 'Ik begrijp het niet.', fon: 'non kah-PEES-koh' },
+        { it: 'Può ripetere?', nl: 'Kunt u dat herhalen?', fon: 'PWOH ree-peh-TEH-reh' },
+        { it: 'Mi sono perso/a.', nl: 'Ik ben verdwaald.', fon: 'mee SOH-noh PEHR-zoh' },
+      ],
+      '🛒 Winkel': [
+        { it: 'Quanto costa?', nl: 'Wat kost het?', fon: 'KWAN-toh KOS-tah' },
+        { it: 'Posso guardare?', nl: 'Mag ik kijken?', fon: 'POS-soh gwar-DAH-reh' },
+        { it: 'Avete questo in un\'altra taglia?', nl: 'Heeft u dit in een andere maat?', fon: 'ah-VEH-teh KWES-toh een oon-AL-trah TAL-yah' },
+        { it: 'Accettate carte di credito?', nl: 'Accepteert u creditcards?', fon: 'at-chet-TAH-teh KAR-teh dee CREH-dee-toh' },
+        { it: 'Troppo caro.', nl: 'Te duur.', fon: 'TROP-poh KAH-roh' },
+      ],
+      '😄 Voor de kids': [
+        { it: 'Ciao!', nl: 'Hoi!', fon: 'CHOW' },
+        { it: 'Grazie mille!', nl: 'Heel erg bedankt!', fon: 'GRATS-yeh MEEL-leh' },
+        { it: 'Un gelato, per favore!', nl: 'Een ijsje, alsjeblieft!', fon: 'oon djeh-LAH-toh, pehr fah-VOH-reh' },
+        { it: 'Ho fame!', nl: 'Ik heb honger!', fon: 'oh FAH-meh' },
+        { it: 'Ho sete!', nl: 'Ik heb dorst!', fon: 'oh SEH-teh' },
+        { it: 'Dov\'è il bagno?', nl: 'Waar is de wc?', fon: 'doh-VEH eel BAN-yoh' },
+      ],
+      '🚨 Noodgevallen': [
+        { it: 'Aiuto!', nl: 'Help!', fon: 'ah-YOO-toh' },
+        { it: 'Chiami un\'ambulanza!', nl: 'Bel een ambulance!', fon: 'KYAH-mee oon am-boo-LANTS-ah' },
+        { it: 'Dov\'è l\'ospedale?', nl: 'Waar is het ziekenhuis?', fon: 'doh-VEH los-peh-DAH-leh' },
+        { it: 'Sono malato/a.', nl: 'Ik ben ziek.', fon: 'SOH-noh mah-LAH-toh' },
+        { it: 'Ho bisogno di un medico.', nl: 'Ik heb een dokter nodig.', fon: 'oh bee-ZON-yoh dee oon MEH-dee-koh' },
+      ],
+    };
+
+    const cats = Object.keys(ZINNEN);
+    const catsEl = document.getElementById('zinnen-cats');
+    const listEl = document.getElementById('zinnen-list');
+
+    function showCat(cat) {
+      document.querySelectorAll('.zinnen-cat-btn').forEach(b => b.classList.toggle('on', b.dataset.cat === cat));
+      listEl.innerHTML = '';
+      ZINNEN[cat].forEach(z => {
+        const d = document.createElement('div');
+        d.className = 'zin';
+        d.innerHTML = `<div class="zin-it">${z.it}</div><div class="zin-nl">${z.nl}</div><div class="zin-fon">🔊 ${z.fon}</div><div class="zin-hint">Tik voor uitspraak</div>`;
+        d.onclick = () => d.classList.toggle('open');
+        listEl.appendChild(d);
+      });
+    }
+
+    cats.forEach((cat, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'zinnen-cat-btn';
+      btn.textContent = cat;
+      btn.dataset.cat = cat;
+      btn.onclick = () => showCat(cat);
+      catsEl.appendChild(btn);
+    });
+
+    showCat(cats[0]);
+  })();
+
+  // ── 4. PAKLIJST ──
+  (function pakInit() {
+    const PAK = {
+      '👕 Kleding': ['Badkleding (2x)', 'Zonnebril', 'Wandelschoenen', 'Lichte broeken / shorts', 'T-shirts', 'Avondkleding', 'Regenjas', 'Ondergoed & sokken', 'Pyjama'],
+      '🧴 Toilettas': ['Zonnebrandcrème (factor 50)', 'Zonnebrandcrème kinderen', 'Tandenborstel & tandpasta', 'Deodorant', 'Shampoo & douchegel', 'Muggenspray', 'Paracetamol & ibuprofen', 'Pleister & verbandset'],
+      '📄 Documenten': ['Paspoort / ID-kaart', 'Rijbewijs', 'Kentekenbewijs auto', 'Groene kaart (autoverzekering)', 'EHIC zorgpas (Europa)', 'Reisverzekeringsdocumenten', 'Hotelbevestigingen', 'Noodnummers lijst'],
+      '👶 Kinderen': ['Favoriete knuffel', 'Speelgoed / boeken', 'Snacks voor onderweg', 'Reisziektepillen', 'Zwemvest', 'Zonnehoedje'],
+      '🚗 Auto': ['Vignette Oostenrijk! (verplicht)', 'Veiligheidshesjes (verplicht)', 'Gevarendriehoek', 'Euro-sticker', 'Navigatie / telefoonhouder', 'Flesje water'],
+      '🏖️ Strand & buiten': ['Strandlaken', 'Snorkelset', 'Dagrugzak', 'Herbruikbare waterfles', 'Zonnehoed / pet'],
+    };
+
+    const LS_KEY = 'roadtrip_pak';
+    const saved  = () => JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+    const save   = v  => localStorage.setItem(LS_KEY, JSON.stringify(v));
+
+    let total = 0;
+    Object.values(PAK).forEach(items => { total += items.length; });
+
+    function render() {
+      const s = saved();
+      const checked = Object.values(s).filter(Boolean).length;
+      const cont = document.getElementById('pak-container');
+      cont.innerHTML = '';
+
+      const grid = document.createElement('div');
+      grid.className = 'pak-grid';
+
+      Object.entries(PAK).forEach(([cat, items]) => {
+        const box = document.createElement('div');
+        box.className = 'pak-cat';
+        box.innerHTML = `<div class="pak-cat-title">${cat}</div>`;
+        items.forEach((item, i) => {
+          const key = cat + i;
+          const done = !!s[key];
+          const row = document.createElement('label');
+          row.className = 'pak-item' + (done ? ' done' : '');
+          row.innerHTML = `<input type="checkbox" ${done ? 'checked' : ''}><span>${item}</span>`;
+          row.querySelector('input').onchange = e => {
+            const sv = saved(); sv[key] = e.target.checked; save(sv);
+            row.classList.toggle('done', e.target.checked);
+            document.getElementById('pak-count').textContent = pakCount();
+          };
+          box.appendChild(row);
+        });
+        grid.appendChild(box);
+      });
+
+      cont.appendChild(grid);
+
+      const footer = document.createElement('div');
+      footer.className = 'pak-footer';
+      footer.innerHTML = `<span class="pak-count-lbl" id="pak-count">${pakCount()}</span><button class="pak-reset" onclick="pakReset()">Alles wissen</button>`;
+      cont.appendChild(footer);
+    }
+
+    function pakCount() {
+      const c = Object.values(saved()).filter(Boolean).length;
+      return `${c} van ${total} ingepakt`;
+    }
+
+    window.pakReset = () => { localStorage.removeItem(LS_KEY); render(); };
+    render();
+  })();
+
+  // ── 5. GROEPSSTEMMING ──
+  (function stemmingInit() {
+    const OPTS = [
+      { emoji: '🏛️', label: 'Stad of dorp bezoeken' },
+      { emoji: '🏊', label: 'Zwemmen / strand' },
+      { emoji: '🥾', label: 'Wandeling in de natuur' },
+      { emoji: '😴', label: 'Uitrusten & zwembad' },
+      { emoji: '🚗', label: 'Spontaan uitstapje' },
+      { emoji: '🎉', label: 'Groep beslist ter plekke' },
+    ];
+
+    const LS_KEY = 'roadtrip_stem';
+    const saved  = () => JSON.parse(localStorage.getItem(LS_KEY) || JSON.stringify(new Array(OPTS.length).fill(0)));
+    const save   = v  => localStorage.setItem(LS_KEY, JSON.stringify(v));
+
+    function render() {
+      const votes = saved();
+      const total = votes.reduce((a, b) => a + b, 0);
+      const cont  = document.getElementById('stem-container');
+      cont.innerHTML = '';
+
+      const optDiv = document.createElement('div');
+      optDiv.className = 'stem-opts';
+      OPTS.forEach((opt, i) => {
+        optDiv.innerHTML += `
+          <div class="stem-row">
+            <span class="stem-emoji">${opt.emoji}</span>
+            <span class="stem-label">${opt.label}</span>
+            <span class="stem-count" id="stem-c-${i}">${votes[i]}</span>
+            <button class="stem-btn minus" onclick="stemMinus(${i})">−</button>
+            <button class="stem-btn" onclick="stemPlus(${i})">+</button>
+          </div>`;
+      });
+      cont.appendChild(optDiv);
+
+      const footer = document.createElement('div');
+      footer.className = 'stem-footer';
+      footer.innerHTML = `<span class="stem-total" id="stem-total">${total} stem${total !== 1 ? 'men' : ''}</span><button class="stem-reset" onclick="stemmingReset()">Wis stemmen</button>`;
+      cont.appendChild(footer);
+    }
+
+    function updateCounts() {
+      const votes = saved();
+      const total = votes.reduce((a, b) => a + b, 0);
+      OPTS.forEach((_, i) => {
+        const el = document.getElementById('stem-c-' + i);
+        if (el) el.textContent = votes[i];
+      });
+      const tel = document.getElementById('stem-total');
+      if (tel) tel.textContent = `${total} stem${total !== 1 ? 'men' : ''}`;
+    }
+
+    window.stemPlus  = i => { const v = saved(); v[i]++; save(v); updateCounts(); };
+    window.stemMinus = i => { const v = saved(); if (v[i] > 0) v[i]--; save(v); updateCounts(); };
+    window.stemmingReset = () => { save(new Array(OPTS.length).fill(0)); updateCounts(); };
+    render();
+  })();
+
+  // ── 6. QUIZ ──
+  (function quizInit() {
+    const QQ = [
+      { q: 'Uit hoeveel dorpen bestaat de Cinque Terre?', opts: ['3','4','5','7'], ans: 2, tip: 'Monterosso, Vernazza, Corniglia, Manarola en Riomaggiore.' },
+      { q: 'In welke Italiaanse regio ligt Siena?', opts: ['Lombardije','Toscane','Umbrië','Sicilië'], ans: 1, tip: 'Siena is een van de mooiste steden van Toscane.' },
+      { q: 'Hoe heet het beroemde plein in het hart van Siena?', opts: ['Piazza Navona','Piazza San Marco','Piazza del Campo','Piazza della Signoria'], ans: 2, tip: 'De Piazza del Campo is beroemd om de jaarlijkse Palio paardenrace.' },
+      { q: 'Op welke hoogte ligt het dorp Serfaus?', opts: ['850 m','1.200 m','1.427 m','1.800 m'], ans: 2, tip: 'Serfaus ligt op 1.427 meter in het Tiroler Oberland, Oostenrijk.' },
+      { q: 'Welke brug in Florence loopt over de Arno met winkeltjes erop?', opts: ['Ponte San Angelo','Ponte Vecchio','Ponte Scaligero','Ponte Sisto'], ans: 1, tip: 'De Ponte Vecchio dateert uit 1345 en staat vol met goud- en zilversmeden.' },
+      { q: 'Hoe verplaats je je in het autovrije Serfaus?', opts: ['Elektrische golfkar','Paard','Ondergrondse kabelbaan (Dorfbahn)','Ski-lift'], ans: 2, tip: 'De Dorfbahn van Serfaus is een van de kleinste gratis metro\'s ter wereld.' },
+      { q: 'Welk dorp in de Cinque Terre is het meest noordelijk?', opts: ['Vernazza','Riomaggiore','Monterosso','Manarola'], ans: 2, tip: 'Monterosso al Mare is het grootste en noordelijkste dorp van de Cinque Terre.' },
+      { q: 'Waarvoor is de Ligurese keuken (omgeving Levanto) het meest bekend?', opts: ['Truffels','Pesto alla Genovese','Risotto alla milanese','Arancini'], ans: 1, tip: 'Pesto komt origineel uit Ligurië — proef de echte versie met verse basilicum!' },
+      { q: 'Wat is een "Bistecca alla Fiorentina"?', opts: ['Een pasta van Florence','Een zoet dessert','Een dikke T-bone steak','Een vissoep'], ans: 2, tip: 'Een dikke T-bone van Chianina-rund, minimaal 5 cm dik, rosé gebakken.' },
+      { q: 'In welk jaar werd de Val d\'Orcia UNESCO Werelderfgoed?', opts: ['1995','1999','2004','2010'], ans: 2, tip: 'De Val d\'Orcia werd in 2004 opgenomen vanwege het uitzonderlijke cultuurlandschap.' },
+    ];
+
+    let qIdx = 0, score = 0, answered = false;
+
+    window.quizStart = () => {
+      qIdx = 0; score = 0;
+      document.getElementById('quiz-start').classList.remove('on');
+      document.getElementById('quiz-q').classList.add('on');
+      renderQ();
+    };
+
+    function renderQ() {
+      const q = QQ[qIdx];
+      document.getElementById('quiz-prog').textContent = `Vraag ${qIdx + 1} van ${QQ.length}`;
+      document.getElementById('quiz-q-txt').textContent = q.q;
+      document.getElementById('quiz-fb').textContent = '';
+      document.getElementById('quiz-next').style.display = 'none';
+      answered = false;
+
+      const optsEl = document.getElementById('quiz-opts');
+      optsEl.innerHTML = '';
+      q.opts.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-opt';
+        btn.textContent = opt;
+        btn.onclick = () => {
+          if (answered) return;
+          answered = true;
+          optsEl.querySelectorAll('.quiz-opt').forEach(b => b.disabled = true);
+          if (i === q.ans) { btn.classList.add('correct'); score++; }
+          else { btn.classList.add('wrong'); optsEl.querySelectorAll('.quiz-opt')[q.ans].classList.add('correct'); }
+          document.getElementById('quiz-fb').textContent = (i === q.ans ? '✓ Goed! ' : '✗ Helaas. ') + q.tip;
+          document.getElementById('quiz-next').style.display = 'inline-block';
+        };
+        optsEl.appendChild(btn);
+      });
+    }
+
+    window.quizNext = () => {
+      qIdx++;
+      if (qIdx >= QQ.length) {
+        document.getElementById('quiz-q').classList.remove('on');
+        document.getElementById('quiz-res').classList.add('on');
+        document.getElementById('quiz-score').textContent = `${score}/${QQ.length}`;
+        const pct = score / QQ.length;
+        document.getElementById('quiz-res-msg').textContent =
+          pct === 1   ? '🎉 Perfecte score! Jij bent de Italië-expert van de groep!' :
+          pct >= 0.7  ? '👏 Heel goed! Je kent Italië aardig.' :
+          pct >= 0.5  ? '😊 Niet slecht! Nog wat bij te leren onderweg.' :
+                        '😅 Gelukkig ga je op reis — dan leer je het vanzelf!';
+      } else { renderQ(); }
+    };
+
+    window.quizRestart = () => {
+      document.getElementById('quiz-res').classList.remove('on');
+      document.getElementById('quiz-start').classList.add('on');
+    };
+  })();
+
 </script>
 
 </body>
