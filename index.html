@@ -567,6 +567,121 @@
     .cal-dot.d-tuscany { background: #d1fae5; border: 1px solid #6ee7b7; }
     .cal-dot.d-levanto { background: #e0f2fe; border: 1px solid #7dd3fc; }
 
+    /* ── ACTIVITEITEN WIEL ── */
+    .wheel-intro {
+      color: var(--muted);
+      font-size: 0.93rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .wheel-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .wheel-pin-wrap {
+      position: relative;
+      width: min(360px, 100%);
+      display: flex;
+      justify-content: center;
+    }
+
+    .wheel-pin {
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0;
+      width: 0; height: 0;
+      border-left: 13px solid transparent;
+      border-right: 13px solid transparent;
+      border-top: 22px solid var(--orange);
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.35));
+      z-index: 2;
+    }
+
+    #spinCanvas {
+      width: 100%;
+      max-width: 360px;
+      display: block;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 8px 36px rgba(0,0,0,0.2);
+    }
+
+    .wheel-btn {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.75rem 2.4rem;
+      font-size: 1rem;
+      font-weight: bold;
+      font-family: 'Georgia', serif;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: filter 0.15s, transform 0.15s;
+    }
+
+    .wheel-btn:hover:not(:disabled) { filter: brightness(1.1); transform: scale(1.04); }
+    .wheel-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    /* Result overlay */
+    .wheel-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wheel-overlay.show { display: flex; }
+
+    .wheel-result-box {
+      background: #fff;
+      border-radius: 22px;
+      padding: 2.5rem 2rem 2rem;
+      text-align: center;
+      max-width: 310px;
+      width: 88%;
+      box-shadow: 0 16px 60px rgba(0,0,0,0.3);
+      animation: wPop 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    @keyframes wPop {
+      from { transform: scale(0.4); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    .wheel-res-label {
+      font-size: 0.75rem;
+      font-family: sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    #resEmoji  { font-size: 4rem; line-height: 1.1; margin-bottom: 0.3rem; }
+    #resTitle  { font-size: 1.5rem; font-weight: bold; color: var(--blue); margin-bottom: 1.5rem; }
+
+    .wheel-close-btn {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.65rem 1.8rem;
+      font-size: 0.92rem;
+      font-family: 'Georgia', serif;
+      cursor: pointer;
+    }
+
+    .wheel-close-btn:hover { filter: brightness(1.1); }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
@@ -1079,7 +1194,29 @@
     </div>
   </section>
 
+  <!-- ── ACTIVITEITEN WIEL ── -->
+  <section>
+    <h2>Activiteiten wiel 🎡</h2>
+    <p class="wheel-intro">Weet je niet wat jullie gaan doen? Geef een draai en het lot beslist!</p>
+    <div class="wheel-wrap">
+      <div class="wheel-pin-wrap">
+        <div class="wheel-pin"></div>
+        <canvas id="spinCanvas" width="360" height="360"></canvas>
+      </div>
+      <button class="wheel-btn" id="wheelBtn" onclick="wheelSpin()">🎡 Draaien!</button>
+    </div>
+  </section>
+
 </main>
+
+<div class="wheel-overlay" id="wheelOverlay" onclick="wheelClose()">
+  <div class="wheel-result-box" onclick="event.stopPropagation()">
+    <div class="wheel-res-label">Jullie activiteit is...</div>
+    <div id="resEmoji"></div>
+    <div id="resTitle"></div>
+    <button class="wheel-close-btn" onclick="wheelClose()">Opnieuw draaien 🎡</button>
+  </div>
+</div>
 
 <footer>
   Roadtrip Italie 2026 &bull; Gemaakt met liefde voor Jan, Marga, José, Anne-Jan, PM, Danielle, Lieke &amp; Evan
@@ -1359,6 +1496,129 @@
   }
 
   calInit();
+
+  // ── ACTIVITEITEN WIEL ──
+  const SEGS = [
+    { emoji: '🍦', label: 'Gelato',     full: 'Gelato eten!',           color: '#2d6a4f' },
+    { emoji: '📸', label: 'Foto',       full: 'Foto safari!',           color: '#e07b39' },
+    { emoji: '🍷', label: 'Wijn',       full: 'Wijn proeven',           color: '#1d3557' },
+    { emoji: '😴', label: 'Siesta',     full: 'Siesta time!',           color: '#52b788' },
+    { emoji: '🥾', label: 'Wandelen',   full: 'Wandeling maken',        color: '#e07b39' },
+    { emoji: '🍕', label: 'Pizzeria',   full: 'Pizzeria opzoeken!',     color: '#1d3557' },
+    { emoji: '🛍️', label: 'Markt',      full: 'Lokale markt verkennen', color: '#2d6a4f' },
+    { emoji: '🎲', label: 'Spelletje',  full: 'Kaartspel spelen!',      color: '#e07b39' },
+    { emoji: '🏊', label: 'Zwemmen',    full: 'Zwemmen!',               color: '#1d3557' },
+    { emoji: '🎉', label: 'Verrassing', full: 'Groep beslist!',         color: '#2d6a4f' },
+  ];
+
+  const wC   = document.getElementById('spinCanvas');
+  const wCtx = wC.getContext('2d');
+  const WN   = SEGS.length;
+  const WSA  = (2 * Math.PI) / WN;
+  let wAngle = 0, wVel = 0, wRunning = false;
+
+  function wDraw() {
+    const cx = wC.width / 2, cy = wC.height / 2;
+    const r  = Math.min(cx, cy) - 5;
+    wCtx.clearRect(0, 0, wC.width, wC.height);
+
+    // Outer decorative ring
+    wCtx.beginPath();
+    wCtx.arc(cx, cy, r + 5, 0, 2 * Math.PI);
+    wCtx.fillStyle = '#1d3557';
+    wCtx.fill();
+
+    // Segments
+    SEGS.forEach((seg, i) => {
+      const a0 = wAngle + i * WSA, a1 = a0 + WSA;
+      wCtx.beginPath();
+      wCtx.moveTo(cx, cy);
+      wCtx.arc(cx, cy, r, a0, a1);
+      wCtx.closePath();
+      wCtx.fillStyle = seg.color;
+      wCtx.fill();
+      wCtx.strokeStyle = 'rgba(255,255,255,0.2)';
+      wCtx.lineWidth = 1;
+      wCtx.stroke();
+
+      // Text (emoji + label, drawn radially from outside in)
+      wCtx.save();
+      wCtx.translate(cx, cy);
+      wCtx.rotate(a0 + WSA / 2);
+      wCtx.textAlign = 'right';
+      wCtx.font = '16px sans-serif';
+      wCtx.fillStyle = '#fff';
+      wCtx.fillText(seg.emoji, r - 8, -2);
+      wCtx.font = 'bold 11px sans-serif';
+      wCtx.fillStyle = 'rgba(255,255,255,0.92)';
+      wCtx.fillText(seg.label, r - 8, 11);
+      wCtx.restore();
+    });
+
+    // Divider lines
+    SEGS.forEach((_, i) => {
+      const a = wAngle + i * WSA;
+      wCtx.beginPath();
+      wCtx.moveTo(cx, cy);
+      wCtx.lineTo(cx + r * Math.cos(a), cy + r * Math.sin(a));
+      wCtx.strokeStyle = 'rgba(255,255,255,0.35)';
+      wCtx.lineWidth = 2;
+      wCtx.stroke();
+    });
+
+    // Outer circle border
+    wCtx.beginPath();
+    wCtx.arc(cx, cy, r, 0, 2 * Math.PI);
+    wCtx.strokeStyle = 'rgba(255,255,255,0.5)';
+    wCtx.lineWidth = 2;
+    wCtx.stroke();
+
+    // Center button
+    wCtx.beginPath();
+    wCtx.arc(cx, cy, 46, 0, 2 * Math.PI);
+    wCtx.fillStyle = wRunning ? '#b5451b' : '#e07b39';
+    wCtx.fill();
+    wCtx.strokeStyle = '#fff';
+    wCtx.lineWidth = 3;
+    wCtx.stroke();
+    wCtx.fillStyle = '#fff';
+    wCtx.textAlign = 'center';
+    wCtx.font = 'bold 12px sans-serif';
+    wCtx.fillText(wRunning ? '...' : 'Tik hier!', cx, cy + 5);
+  }
+
+  function wWinner() {
+    const n = ((-Math.PI / 2 - wAngle) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+    return Math.floor(n / WSA) % WN;
+  }
+
+  function wheelSpin() {
+    if (wRunning) return;
+    wRunning = true;
+    document.getElementById('wheelBtn').disabled = true;
+    wVel = 0.22 + Math.random() * 0.18;
+    (function frame() {
+      wVel *= 0.983;
+      wAngle += wVel;
+      wDraw();
+      if (wVel > 0.003) {
+        requestAnimationFrame(frame);
+      } else {
+        wRunning = false;
+        document.getElementById('wheelBtn').disabled = false;
+        wDraw();
+        const w = SEGS[wWinner()];
+        document.getElementById('resEmoji').textContent = w.emoji;
+        document.getElementById('resTitle').textContent = w.full;
+        document.getElementById('wheelOverlay').classList.add('show');
+      }
+    })();
+  }
+
+  function wheelClose() { document.getElementById('wheelOverlay').classList.remove('show'); }
+
+  wC.addEventListener('click', wheelSpin);
+  wDraw();
 
   // ── DAGAGENDA ACCORDION & TODAY HIGHLIGHT ──
   function toggleDay(header) {
