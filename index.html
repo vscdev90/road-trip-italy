@@ -1592,32 +1592,98 @@
     return Math.floor(n / WSA) % WN;
   }
 
-  function wheelSpin() {
-    if (wRunning) return;
+  function wShowResult() {
+    wDraw();
+    const w = SEGS[wWinner()];
+    document.getElementById('resEmoji').textContent = w.emoji;
+    document.getElementById('resTitle').textContent = w.full;
+    document.getElementById('wheelOverlay').classList.add('show');
+  }
+
+  function wLaunch(v) {
+    if (wRunning || Math.abs(v) < 0.005) return;
     wRunning = true;
     document.getElementById('wheelBtn').disabled = true;
-    wVel = 0.22 + Math.random() * 0.18;
+    wVel = v;
     (function frame() {
       wVel *= 0.983;
       wAngle += wVel;
       wDraw();
-      if (wVel > 0.003) {
+      if (Math.abs(wVel) > 0.003) {
         requestAnimationFrame(frame);
       } else {
         wRunning = false;
         document.getElementById('wheelBtn').disabled = false;
-        wDraw();
-        const w = SEGS[wWinner()];
-        document.getElementById('resEmoji').textContent = w.emoji;
-        document.getElementById('resTitle').textContent = w.full;
-        document.getElementById('wheelOverlay').classList.add('show');
+        wShowResult();
       }
     })();
   }
 
+  function wheelSpin() { wLaunch(0.22 + Math.random() * 0.18); }
+
   function wheelClose() { document.getElementById('wheelOverlay').classList.remove('show'); }
 
-  wC.addEventListener('click', wheelSpin);
+  // ── Touch swipe ──
+  let wTouchHist = [];     // [{angle, t}] last few samples
+  let wDragging  = false;
+  let wTouchUsed = false;  // prevents click firing after touchend
+
+  function wTouchAngle(touch) {
+    const r = wC.getBoundingClientRect();
+    return Math.atan2(
+      touch.clientY - (r.top  + r.height / 2),
+      touch.clientX - (r.left + r.width  / 2)
+    );
+  }
+
+  function wAngleDelta(a, b) {          // shortest signed arc a→b
+    let d = b - a;
+    if (d >  Math.PI) d -= 2 * Math.PI;
+    if (d < -Math.PI) d += 2 * Math.PI;
+    return d;
+  }
+
+  wC.addEventListener('touchstart', e => {
+    if (wRunning) return;
+    e.preventDefault();
+    wDragging  = true;
+    wTouchUsed = false;
+    wTouchHist = [{ angle: wTouchAngle(e.touches[0]), t: Date.now() }];
+  }, { passive: false });
+
+  wC.addEventListener('touchmove', e => {
+    if (!wDragging) return;
+    e.preventDefault();
+    const a = wTouchAngle(e.touches[0]);
+    const prev = wTouchHist[wTouchHist.length - 1];
+    wAngle += wAngleDelta(prev.angle, a);
+    wTouchHist.push({ angle: a, t: Date.now() });
+    if (wTouchHist.length > 4) wTouchHist.shift();
+    wDraw();
+  }, { passive: false });
+
+  wC.addEventListener('touchend', e => {
+    if (!wDragging) return;
+    e.preventDefault();
+    wDragging  = false;
+    wTouchUsed = true;
+    setTimeout(() => { wTouchUsed = false; }, 400);
+
+    // Compute flick velocity from recent history
+    if (wTouchHist.length >= 2) {
+      const first = wTouchHist[0], last = wTouchHist[wTouchHist.length - 1];
+      const dt = last.t - first.t;
+      if (dt > 0) {
+        const v = wAngleDelta(first.angle, last.angle) / (dt / 16.67);
+        const clamped = Math.max(-0.45, Math.min(0.45, v));
+        if (Math.abs(clamped) > 0.02) { wLaunch(clamped); return; }
+      }
+    }
+    // Tap with no real swipe → normal spin
+    wheelSpin();
+  }, { passive: false });
+
+  wC.addEventListener('click', () => { if (!wTouchUsed) wheelSpin(); });
   wDraw();
 
   // ── DAGAGENDA ACCORDION & TODAY HIGHLIGHT ──
